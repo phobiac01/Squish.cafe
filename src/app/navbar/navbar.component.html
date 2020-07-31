@@ -1,0 +1,15 @@
+<header>
+    <a href="/"><span>Squish.</span><code>cafe</code></a>
+
+    <nav>
+        <ul>
+            <li *ngFor="let link of links">
+                <a href="{{link.location}}">
+                    <p>{{link.display}}</p>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <a href="#"><button>My URL's</button></a>
+</header>

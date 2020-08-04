@@ -27,6 +27,7 @@ a:hover {
     color: white;
 }
 
-p {
+ul > p {
     margin: 6px;
+    color: red;
 }

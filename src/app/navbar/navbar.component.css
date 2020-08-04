@@ -1,6 +1,6 @@
-header {
-    display: float;
-}
+/* header {
+    display: inline;
+} */
 
 span {
     color: whitesmoke;
@@ -10,16 +10,16 @@ code {
     color: rgb(255, 241, 159);
 }
 
+
 ul {
     list-style-type: none;
     background-color: #525252;
     margin: 0;
     padding: 0;
-    overflow: hidden;
 }
 
 li {
-    float: left;
+    display: inline-block;
 }
 
 a {
@@ -29,10 +29,7 @@ a {
     text-align: center;
     text-decoration: none;
 }
+
 a:hover {
     background-color: #636363;
-}
-
-p {
-    margin: 0;
 }

@@ -11,10 +11,9 @@ export class NavbarComponent {
 
   constructor () {
     this.links = [
-      {display : "Home", location : "/"},
-      {display : "About", location : "/about"},
-      {display : "Projects", location : "/projects"},
-      {display : "Contact", location : "/contact"},
+      {display : "Home", location : "#"},
+      {display : "My Urls", location : "#"},
+      {display : "API", location : "#"},
     ];
   }
 }

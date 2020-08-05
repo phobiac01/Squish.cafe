@@ -5,11 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './squisher.component.html',
   styleUrls: ['./squisher.component.css']
 })
-export class SquisherComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class SquisherComponent {
+  constructor() {}
 }

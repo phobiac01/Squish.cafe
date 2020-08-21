@@ -1,1 +1,4 @@
 /* Set max width on squish main container */
+.squisher {
+    max-width: 780px;
+}

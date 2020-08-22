@@ -1,6 +1,34 @@
 <div id="content-wrap">
     <app-navbar></app-navbar>
     <app-squisher></app-squisher>
+
+    <div id="holder">
+        <div id="request">
+            <textarea name="username" id="usernameInput" placeholder="Username"></textarea>
+            <button onclick="setUser()">Set User</button><button onclick="getUser()">Get User</button>
+            <br>
+            <textarea name="squishUrl" id="squishUrlInput" placeholder="URL"></textarea>
+            <button onclick="setSquish()">Set Squish</button>
+            <br>
+            <textarea name="short" id="shortInput" placeholder="SHORT"></textarea>
+            <button onclick="getSquish()">Get Squish</button>
+            <br>
+            <hr>
+            <button onclick="clearDb()">Clear db</button>
+            <button onclick="listAllUsers()">Show All Users</button>
+            <button onclick="listAllSquishes()">Show All Squish</button>
+            <br>
+        </div>
+    
+        <hr>
+
+        <div id="results">
+            <div id="statusBox"><div id="apiStatus" onclick="updateApiStatus()" title="Click to refresh status"></div><p>Api Status</p></div>
+            <br>
+            <br>
+            <div id="returned"></div>
+        </div>
+    </div>
 </div>
 <app-footer></app-footer>
 

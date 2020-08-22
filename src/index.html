@@ -10,5 +10,138 @@
 </head>
 <body>
   <app-root></app-root>
+
+  <script>
+    var resultBox;
+    var apiStatusIndicator;
+    var startTime;
+
+    window.onload = () => {
+        startTime = Date.now();
+        resultBox = document.getElementById("returned");
+        apiStatusIndicator = document.getElementById("apiStatus");
+
+        // Update the current API status every 5 seconds for 5 minutes
+        updateApiStatus();
+        setInterval(function(){
+            // Stop requests 5 minutes after last refresh to conserve network resources
+            if(Date.now() - startTime <= 300000) {
+                updateApiStatus();
+            }
+        }, 5000)
+    };
+
+    function updateApiStatus() {
+        // Fetch HEAD request
+        apiStatusIndicator.style.backgroundColor = "lightblue";
+        //onsole.log("] API status updated");
+        fetch('http://localhost:4040', {method: 'HEAD'})
+            .then((res) => {
+                return (res.status == 200)
+            })
+            .then((isAlive) => {
+                apiStatusIndicator.style.backgroundColor = (isAlive) ? 'greenyellow' : 'red';
+            })
+            .catch((err) => {
+                apiStatusIndicator.style.backgroundColor = 'red';
+                console.log("!! Error contacting API");
+                console.warn(err);
+            });
+    }
+
+    function clearDb() {
+        fetch('http://localhost:4040/cleanDb').then(alert("db reset"));
+    }
+
+
+
+
+
+    function setUser() {
+        var username = document.getElementById("usernameInput").value;
+        console.log(`>> Setting user with username ${username}`);
+
+        if (!username) {
+            resultBox.innerHTML = "<strong>PLEASE PROVIDE A VALID USERNAME AND TRY AGAIN</strong>"
+        
+        } else {
+            var payload = {displayName: username};
+            
+            fetch('http://localhost:4040/setUser', {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(payload) // body data type must match "Content-Type" header
+            })
+                .then(res => res.json())
+                .then((data) => {
+                    resultBox.innerHTML = (data) ? JSON.stringify(data) : "null";
+                })
+                .catch(err => console.warn(err));
+        }
+    }
+
+    function getUser() {
+        var username = document.getElementById("usernameInput").value;
+        console.log(`<< Getting user with username ${username}`);
+
+        if (!username) {
+            resultBox.innerHTML = "<strong>PLEASE PROVIDE A VALID USERNAME AND TRY AGAIN</strong>";
+        
+        } else {
+            fetch(`http://localhost:4040/user/${username}`)
+                .then(res => res.json())
+                .then((data) => {
+                    resultBox.innerHTML = (data) ? JSON.stringify(data) + `<br><br><div class="userObject"><img src='${data.avatarUrl}' width='40px' style="margin-right: 10px"><span><strong>${data.displayName}</strong></span></div>` : "null";
+                })
+                .catch((err) => {console.log(err)});
+        }
+    }
+
+
+
+
+
+
+
+    function setSquish() {
+        var url = document.getElementById("squishUrlInput").value;
+        console.log(`>> Setting squish with URL ${url}`);
+
+        if (!url) {
+            resultBox.innerHTML = "<strong>PLEASE PROVIDE A VALID URL AND TRY AGAIN</strong>"
+        
+        } else {
+            var payload = {url : url};
+
+            fetch('http://localhost:4040/setSquish', {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(payload) // body data type must match "Content-Type" header
+            })
+                .then(res => res.json())
+                .then((data) => {
+                    resultBox.innerHTML = (data) ? JSON.stringify(data) : "null";
+                })
+                .catch(err => console.warn(err));
+        }
+    }
+
+    function getSquish() {
+        var short = document.getElementById("shortInput").value;
+        console.log(`<< Getting squish with short ${short}`);
+
+        if (!short) {
+            resultBox.innerHTML = "<strong>PLEASE PROVIDE A VALID SHORT AND TRY AGAIN</strong>";
+        
+        } else {
+            fetch(`http://localhost:4040/squish/${short}`)
+                .then(res => res.json())
+                .then((data) => {
+                    resultBox.innerHTML = (data) ? JSON.stringify(data) : "null";
+                })
+                .catch((err) => {console.log(err)});
+        }
+    }
+  </script>
 </body>
 </html>

@@ -1,3 +1,48 @@
 #content-wrap {
   padding-bottom: 10rem;    /* Footer height */
 }
+
+
+
+
+#holder {
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 11rem;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.795);
+}
+
+#usernameInput, #squishUrlInput, #shortInput {
+  resize: none;
+  height: 25px;
+  margin: 2px;
+}
+#request button {
+  margin-left: 15px;
+}
+
+
+
+#apiStatus {
+  width: 20px;
+  height: 20px;
+  background-color: darkgray;
+}
+#statusBox {
+  display: inline-flex;
+}
+#statusBox p {
+  margin: auto;
+  padding-left: 15px;
+}
+
+
+
+#returned {
+  color: rgb(25, 79, 241);
+}
+.userObject span {
+  margin: 10px 0;
+}
